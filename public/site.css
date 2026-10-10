@@ -438,6 +438,22 @@ a.vrk-aud:hover>svg:last-child{transform:translateX(5px)}
 .vrk-step::after{top:18px}
 a.vrk-aud>svg:last-child{width:18px;height:18px;flex:none}
 
+/* why section: animated ITR-photo backdrop with the filing badges */
+.fx-why{position:relative;isolation:isolate;overflow:hidden}
+.fx-why>.vrk-container{position:relative;z-index:1}
+.fx-whybg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fx-whybg>img{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);object-fit:cover;filter:blur(3px);opacity:.22;animation:fx-drift 26s ease-in-out infinite alternate}
+.fx-whybg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.2) 50%,rgba(255,255,255,.6))}
+.fx-whybg .fx-float{z-index:1}
+.fx-whybg .fx-float span{left:var(--x);color:var(--brand-orange);text-shadow:none}
+.fx-whybg .fx-chip{z-index:2}
+.fx-chip.w1{left:3%;top:28px}
+.fx-chip.w2{right:4%;top:34px}
+.fx-chip.w3{right:9%;bottom:34px}
+@keyframes fx-drift{from{transform:scale(1.04) translateX(-14px)}to{transform:scale(1.12) translateX(14px)}}
+@media (max-width:900px){.fx-chip.w1,.fx-chip.w3{display:none}}
+@media (prefers-reduced-motion:reduce){.fx-whybg>img{animation:none!important}}
+
 /* ===== About page: animated sections (from VRK-Tax-Solutions-Website package) ===== */
 .vrk-mapbox{position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:var(--surface-alt)}
 .vrk-mapbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
