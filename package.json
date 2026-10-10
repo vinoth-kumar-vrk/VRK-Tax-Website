@@ -2,15 +2,8 @@
   "name": "vrk-tax-solutions-website",
   "version": "1.0.0",
   "private": true,
-  "description": "VRK Tax Solutions website — static front end plus Netlify Functions backend (enquiries + admin).",
-  "type": "module",
-  "engines": { "node": ">=20" },
+  "description": "VRK Tax Solutions website (static HTML/CSS/JS). Enquiries and consultation requests go to the owner's WhatsApp.",
   "scripts": {
-    "dev": "netlify dev",
-    "local": "node dev-server.mjs",
-    "test": "node --test \"test/*.test.mjs\""
-  },
-  "dependencies": {
-    "@netlify/blobs": "^8.1.0"
+    "local": "node dev-server.mjs"
   }
 }

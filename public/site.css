@@ -221,6 +221,8 @@ body.notes .vrk-anno{display:block}
 #notes-toggle{position:fixed;right:20px;bottom:20px;z-index:50;font:600 13px/1 var(--font-sans);padding:10px 14px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);color:var(--ink-strong);cursor:pointer;box-shadow:var(--shadow-card)}
 
 /* ===== additions: inner pages, forms, responsive (Design A) ===== */
+/* logo circle slightly larger than the base 56px */
+.vrk-brand img{width:68px;height:68px}
 .vrk-chip{display:inline-block;text-decoration:none}
 .vrk-chip:hover{border-color:var(--ink-strong)}
 .vrk-svc[hidden]{display:none}
@@ -306,7 +308,7 @@ a.vrk-aud:hover{background:var(--surface-alt);border-color:var(--brand-orange)}
   .vrk-section{padding:56px 0}
   .hide-sm{display:none!important}
   .vrk-topbar-group:last-child{display:none}
-  .vrk-brand img{width:44px;height:44px}
+  .vrk-brand img{width:52px;height:52px}
   .vrk-brand-name{font-size:16px}
   .vrk-brand-tag{font-size:9.5px;letter-spacing:.06em}
   .vrk-display{font-size:34px;line-height:42px}
@@ -336,8 +338,8 @@ a.vrk-aud:hover{background:var(--surface-alt);border-color:var(--brand-orange)}
   .vrk-form{padding:22px 18px}
 }
 
-/* hero photo: two-photo office collage (4:3) */
-.vrk-hero-media img.photo{height:auto;aspect-ratio:4/3}
+/* hero photo: near-square office photo */
+.vrk-hero-media img.photo{height:auto;aspect-ratio:513/470;object-position:center}
 
 /* ===== About page: animated sections (from VRK-Tax-Solutions-Website package) ===== */
 .vrk-mapbox{position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:var(--surface-alt)}

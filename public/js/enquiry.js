@@ -1,88 +1,55 @@
-// Enquiry form -> POST /api/enquiry (Netlify Function). Falls back to WhatsApp/call if the request fails.
+// Enquiry form -> owner's WhatsApp. No server involved: on submit the visitor's details are
+// pre-filled into a WhatsApp message addressed to the business number; the visitor just presses Send.
 (function () {
+  var WA_NUMBER = "919092188514";
   var form = document.getElementById("enquiry");
   if (!form) return;
 
   var msg = form.querySelector(".form-msg");
-  var btn = form.querySelector('button[type="submit"]');
-  var lbl = btn.querySelector(".lbl");
-  var idle = lbl.textContent;
-
+  function field(id) { return form.querySelector("#" + id); }
   function show(kind, html) {
     msg.hidden = false;
     msg.className = "form-msg " + kind;
     msg.innerHTML = html;
   }
-  function field(id) {
-    return form.querySelector("#" + id);
-  }
-  function waLink() {
-    var t =
-      "Hello VRK Tax Solutions, I would like to enquire.\nName: " + field("f-name").value.trim() +
-      "\nMobile: " + field("f-phone").value.trim() +
-      "\nService: " + field("f-service").value +
-      (field("f-msg").value.trim() ? "\nMessage: " + field("f-msg").value.trim() : "");
-    return "https://wa.me/919092188514?text=" + encodeURIComponent(t);
-  }
   function clearErrors() {
     form.querySelectorAll("[aria-invalid]").forEach(function (el) { el.removeAttribute("aria-invalid"); });
   }
-  function flag(errors) {
-    var map = { name: "f-name", phone: "f-phone", email: "f-email", service: "f-service" };
-    var first = null;
-    Object.keys(errors || {}).forEach(function (k) {
-      var el = map[k] && field(map[k]);
-      if (el) { el.setAttribute("aria-invalid", "true"); first = first || el; }
-    });
-    if (first) first.focus();
+  function bad(el, text) {
+    el.setAttribute("aria-invalid", "true");
+    el.focus();
+    show("err", text);
   }
 
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
     clearErrors();
+    if (form.querySelector('[name="website"]').value) return; // honeypot: bots only
 
-    var payload = {
-      name: field("f-name").value,
-      phone: field("f-phone").value,
-      email: field("f-email") ? field("f-email").value : "",
-      service: field("f-service").value,
-      message: field("f-msg").value,
-      website: form.querySelector('[name="website"]').value, // honeypot
-      page: location.pathname,
-    };
+    var name = field("f-name").value.trim();
+    var phone = field("f-phone").value.replace(/[^\d+]/g, "");
+    var email = field("f-email") ? field("f-email").value.trim() : "";
+    var service = field("f-service").value;
+    var note = field("f-msg").value.trim();
 
-    btn.disabled = true;
-    lbl.textContent = "Sending…";
-    msg.hidden = true;
+    if (name.length < 2) return bad(field("f-name"), "Please enter your name.");
+    if (phone.replace(/\D/g, "").length < 10) return bad(field("f-phone"), "Please enter a valid mobile number.");
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return bad(field("f-email"), "Please enter a valid email address.");
 
-    fetch("/api/enquiry", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload),
-    })
-      .then(function (res) {
-        return res.json().catch(function () { return {}; }).then(function (data) { return { res: res, data: data }; });
-      })
-      .then(function (r) {
-        if (r.res.ok && r.data.ok) {
-          show("ok", "Thank you — we’ve received your enquiry and will call you back the same working day. " +
-            '<a href="' + waLink() + '" target="_blank" rel="noopener">Continue on WhatsApp</a>');
-          form.reset();
-        } else if (r.res.status === 400) {
-          flag(r.data.errors);
-          show("err", (r.data.errors && Object.values(r.data.errors)[0]) || r.data.error || "Please check your details.");
-        } else {
-          show("err", (r.data.error || "Something went wrong.") +
-            ' <a href="' + waLink() + '" target="_blank" rel="noopener">Send on WhatsApp instead</a>');
-        }
-      })
-      .catch(function () {
-        show("err", "We couldn’t reach the server. " +
-          '<a href="' + waLink() + '" target="_blank" rel="noopener">Send on WhatsApp</a> or call +91 90921 88514.');
-      })
-      .then(function () {
-        btn.disabled = false;
-        lbl.textContent = idle;
-      });
+    var lines = [
+      "Hello VRK Tax Solutions, I would like help with " + (service || "your services") + ".",
+      "",
+      "Name: " + name,
+      "Mobile: " + phone
+    ];
+    if (email) lines.push("Email: " + email);
+    if (note) lines.push("Message: " + note);
+    var url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+
+    var w = window.open(url, "_blank", "noopener");
+    show("ok", w
+      ? "WhatsApp is opening with your details — please press <b>Send</b> to reach us."
+      : 'Tap here to send your enquiry: <a href="' + url + '" target="_blank" rel="noopener">Open WhatsApp</a>');
+    form.reset();
   });
 })();
