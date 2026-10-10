@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Enquiries Admin | VRK Tax Solutions</title>
+<link rel="icon" href="../assets/vrk-logo-v2.jpg">
+<style>
+:root{--navy:#0a2257;--orange:#f76b0a;--ink:#1b2440;--muted:#4f5a78;--line:#dbe2ef;--bg:#f3f6fb;--font:Manrope,"Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.5}
+button,input,select,textarea{font:inherit}
+.top{background:var(--navy);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:14px}
+.top img{width:40px;height:40px;border-radius:50%}
+.top b{font-size:17px}.top small{display:block;color:#c3cde6;font-size:12px}
+.top .sp{flex:1}
+.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;background:var(--orange);color:var(--navy)}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+.btn.line{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.danger{background:#fdecea;color:#8a1c12}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 64px}
+.login{max-width:380px;margin:12vh auto;background:#fff;border-radius:20px;padding:32px;box-shadow:0 18px 50px rgba(10,34,87,.12)}
+.login h1{margin:0 0 6px;font-size:22px;color:var(--navy)}
+.login p{margin:0 0 18px;color:var(--muted);font-size:14px}
+input,select,textarea{width:100%;padding:11px 14px;border:1px solid #7d89a6;border-radius:12px;background:#fff}
+.err{color:#8a1c12;font-size:14px;margin-top:10px;min-height:20px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 16px;cursor:pointer;min-width:96px}
+.stat b{display:block;font-size:22px;color:var(--navy)}
+.stat span{font-size:12px;color:var(--muted);text-transform:capitalize}
+.stat.on{border-color:var(--orange);box-shadow:0 0 0 2px rgba(247,107,10,.2)}
+.bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.bar input{flex:1;min-width:200px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:12px}
+.row1{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.row1 h3{margin:0;font-size:17px;color:var(--navy)}
+.row1 time{font-size:12.5px;color:var(--muted)}
+.meta{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0;font-size:14px}
+.meta a{color:var(--navy);font-weight:700}
+.tag{display:inline-block;background:var(--bg);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;color:var(--navy)}
+.msgtxt{white-space:pre-wrap;font-size:14.5px;background:var(--bg);border-radius:12px;padding:10px 14px;margin:8px 0}
+.act{display:grid;grid-template-columns:170px 1fr auto auto;gap:10px;margin-top:10px}
+.empty{text-align:center;color:var(--muted);padding:48px 0}
+[hidden]{display:none!important}
+@media(max-width:700px){.act{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<section id="login" class="login" hidden>
+  <h1>Admin sign in</h1>
+  <p>VRK Tax Solutions — website enquiries</p>
+  <form id="loginForm"><input id="pw" type="password" placeholder="Admin password" autocomplete="current-password" required>
+  <p class="err" id="loginErr" role="alert"></p>
+  <button class="btn" style="width:100%" type="submit">Sign in</button></form>
+</section>
+
+<section id="app" hidden>
+  <header class="top"><img src="../assets/vrk-logo-v2.jpg" alt=""><div><b>VRK Tax Solutions</b><small>Website enquiries</small></div><span class="sp"></span>
+    <button class="btn ghost" id="export" type="button">Export CSV</button><button class="btn ghost" id="logout" type="button">Sign out</button></header>
+  <div class="wrap">
+    <div class="stats" id="stats"></div>
+    <div class="bar"><input id="q" type="search" placeholder="Search name, mobile, service, message…"><button class="btn line" id="refresh" type="button">Refresh</button></div>
+    <div id="list"></div>
+  </div>
+</section>
+<script src="admin.js"></script>
+</body>
+</html>
