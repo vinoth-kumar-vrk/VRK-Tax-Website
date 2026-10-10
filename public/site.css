@@ -361,6 +361,83 @@ a.vrk-aud:hover{background:var(--surface-alt);border-color:var(--brand-orange)}
 .ab-orbit-sec .vrk-h2{color:var(--brand-orange)}
 .ab-orbit-sec .vrk-eyebrow{color:#fff}
 
+/* ===== landing: tax animation + icon-led layout ===== */
+@keyframes fx-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes fx-rise{0%{transform:translateY(0) rotate(0);opacity:0}12%{opacity:.5}85%{opacity:.5}100%{transform:translateY(-520px) rotate(18deg);opacity:0}}
+@keyframes fx-draw{0%,12%{stroke-dashoffset:26}30%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:26}}
+@keyframes fx-pop{0%,10%{transform:scale(.6);opacity:0}22%{transform:scale(1.1);opacity:1}30%,88%{transform:scale(1);opacity:1}100%{transform:scale(.9);opacity:0}}
+@keyframes fx-fill{0%{width:0}55%,90%{width:100%}100%{width:100%}}
+@keyframes fx-pulse{0%,100%{box-shadow:0 0 0 0 rgba(247,107,10,.45)}50%{box-shadow:0 0 0 12px rgba(247,107,10,0)}}
+@keyframes fx-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.fx-tick path{stroke-dasharray:26;stroke-dashoffset:26;animation:fx-draw 6s ease-in-out infinite;animation-delay:var(--d,0s)}
+
+/* hero */
+.fx-float{position:absolute;inset:0;overflow:hidden}
+.fx-float span{position:absolute;bottom:-60px;left:var(--x);font:800 var(--s)/1 var(--font-serif);color:#fff;opacity:0;animation:fx-rise var(--t) linear infinite;animation-delay:var(--dl);text-shadow:0 0 18px rgba(247,107,10,.6)}
+.fx-hero{position:absolute;inset:0;pointer-events:none}
+.fx-chip{position:absolute;display:flex;gap:10px;align-items:center;background:#fff;border-radius:999px;padding:8px 16px 8px 8px;box-shadow:0 12px 28px rgba(10,34,87,.28);animation:fx-bob 5s ease-in-out infinite;animation-delay:var(--d)}
+.fx-chip-ico{width:30px;height:30px;border-radius:50%;background:var(--brand-orange);color:#fff;display:grid;place-items:center}
+.fx-chip-ico svg{width:16px;height:16px}
+.fx-chip b{display:block;font-size:13px;color:var(--ink-strong);line-height:1.1}
+.fx-chip i{font-style:normal;font-size:11px;color:var(--ink-muted)}
+.fx-chip.c1{left:-34px;top:34px}
+.fx-chip.c2{right:-18px;top:46%}
+.fx-chip.c3{left:6%;bottom:-20px}
+
+/* filing band */
+.fx-band{padding:56px 0}
+.fx-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+.fx-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;display:grid;gap:14px;justify-items:start;box-shadow:0 6px 20px rgba(10,34,87,.06)}
+.fx-card-ico{width:48px;height:48px;border-radius:14px;background:var(--surface-alt);color:var(--ink-strong);display:grid;place-items:center}
+.fx-card-ico svg{width:26px;height:26px}
+.fx-card b{font-size:18px;color:var(--ink-strong)}
+.fx-bar{width:100%;height:8px;border-radius:99px;background:var(--surface-alt);overflow:hidden}
+.fx-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--brand-orange),#ffa35c);animation:fx-fill 6s ease-in-out infinite;animation-delay:var(--d)}
+.fx-state{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:#0a7a3d}
+.fx-state .fx-tick{width:20px;height:20px;padding:3px;border-radius:50%;background:#dff5e8;box-sizing:border-box;animation:fx-pop 6s ease-in-out infinite;animation-delay:var(--d)}
+
+/* service tiles */
+.fx-tiles{display:grid;grid-template-columns:repeat(7,1fr);gap:16px}
+.fx-tile{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:24px 10px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);text-decoration:none;transition:transform .25s,box-shadow .25s,border-color .25s}
+.fx-tile b{font-size:14px;line-height:1.25;color:var(--ink-strong)}
+.fx-tile-n{position:absolute;top:8px;left:12px;font:700 12px var(--font-serif);color:var(--brand-orange)}
+.fx-tile-ico{width:56px;height:56px;border-radius:16px;background:var(--surface-alt);color:var(--ink-strong);display:grid;place-items:center;transition:background .25s,color .25s,transform .35s}
+.fx-tile-ico svg{width:28px;height:28px}
+.fx-tile:hover{transform:translateY(-6px);border-color:var(--brand-orange);box-shadow:0 14px 28px rgba(10,34,87,.14)}
+.fx-tile:hover .fx-tile-ico{background:var(--brand-orange);color:#fff;transform:rotate(-8deg) scale(1.08)}
+
+/* why / steps / audience */
+.fx-pts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+.fx-pt{display:flex;align-items:center;gap:14px}
+.fx-pt span{width:48px;height:48px;border-radius:14px;background:var(--surface-alt);color:var(--brand-orange);display:grid;place-items:center;flex:none}
+.fx-pt svg{width:24px;height:24px}
+.fx-pt b{color:var(--ink-strong);font-size:16px}
+.fx-step-ico{width:56px;height:56px;border-radius:50%;border:2px solid var(--brand-orange);color:#fff;display:grid;place-items:center;margin:0 0 14px;animation:fx-pulse 3s ease-in-out infinite}
+.fx-step-ico svg{width:26px;height:26px}
+.vrk-step{padding-top:var(--space-10)}
+.fx-aud-ico{width:44px;height:44px;border-radius:12px;background:var(--surface-alt);color:var(--brand-orange);display:grid;place-items:center;flex:none;margin-right:14px}
+.fx-aud-ico svg{width:22px;height:22px}
+a.vrk-aud{justify-content:flex-start}
+a.vrk-aud>svg:last-child{margin-left:auto;transition:transform .2s}
+a.vrk-aud:hover>svg:last-child{transform:translateX(5px)}
+.vrk-pillar-ico svg{transition:transform .3s}
+.vrk-pillar:hover .vrk-pillar-ico svg{transform:scale(1.18) rotate(-6deg)}
+
+/* scroll reveal (only when JS + motion allowed) */
+.fx-js .fx-tile,.fx-js .fx-card,.fx-js .vrk-step,.fx-js .vrk-aud,.fx-js .fx-pt{opacity:0}
+.fx-js .in{animation:fx-in .6s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*70ms)}
+
+@media (max-width:1100px){.fx-tiles{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:900px){.fx-chip.c1{left:8px}.fx-chip.c2{right:8px}.fx-cards{grid-template-columns:1fr}}
+@media (max-width:640px){.fx-tiles{grid-template-columns:repeat(2,1fr)}.fx-pts{grid-template-columns:1fr}.fx-chip.c3{display:none}.fx-chip{padding:6px 12px 6px 6px}}
+@media (prefers-reduced-motion:reduce){.fx-chip,.fx-float span,.fx-step-ico,.fx-bar i,.fx-state .fx-tick,.fx-tick path{animation:none!important}.fx-tick path{stroke-dashoffset:0}.fx-float{display:none}.fx-bar i{width:100%}}
+.fx-hero{z-index:3}
+.fx-float span{left:calc(42% + var(--x)*.56)}
+.vrk-step{padding-top:0}
+.vrk-step::before{position:static;display:block;margin-bottom:8px}
+.vrk-step::after{top:18px}
+a.vrk-aud>svg:last-child{width:18px;height:18px;flex:none}
+
 /* ===== About page: animated sections (from VRK-Tax-Solutions-Website package) ===== */
 .vrk-mapbox{position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:var(--surface-alt)}
 .vrk-mapbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
