@@ -341,13 +341,25 @@ a.vrk-aud:hover{background:var(--surface-alt);border-color:var(--brand-orange)}
 /* hero photo: near-square office photo */
 .vrk-hero-media img.photo{height:auto;aspect-ratio:513/470;object-position:center}
 
-/* hero backdrops: ITR-filing photo, blurred */
+/* hero backdrops: ITR-filing photo, navy-tinted so the photo stays visible */
 .vrk-hero{position:relative;isolation:isolate}
 .vrk-hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.vrk-hero-bg img{position:absolute;inset:-24px;width:calc(100% + 48px);height:calc(100% + 48px);object-fit:cover;filter:blur(7px);opacity:.9}
-.vrk-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.82) 45%,rgba(255,255,255,.55) 100%)}
+.vrk-hero-bg img{position:absolute;inset:-8px;width:calc(100% + 16px);height:calc(100% + 16px);object-fit:cover;object-position:center 40%;filter:blur(2.5px) saturate(1.1)}
+.vrk-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,34,87,.93) 0%,rgba(10,34,87,.8) 46%,rgba(10,34,87,.35) 100%)}
+.vrk-hero .vrk-display,.vrk-hero .vrk-display *{color:#fff!important}
+.vrk-hero .vrk-lead{color:#d6def2}
+.vrk-hero .vrk-eyebrow{color:#ffb078}
+.vrk-hero-meta,.vrk-hero-meta a{color:#d6def2}
+.vrk-hero-meta svg{color:var(--brand-orange)}
+.vrk-hero .vrk-btn--secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.vrk-hero .vrk-btn--secondary:hover{background:rgba(255,255,255,.12)}
 .vrk-pagehero{isolation:isolate}
-.vrk-pagehero::before{content:"";position:absolute;inset:-20px;z-index:-1;background:linear-gradient(rgba(10,34,87,.9),rgba(10,34,87,.82)),url(assets/bg-itr-v1.jpg) center/cover no-repeat;filter:blur(6px)}
+.vrk-pagehero::before{content:"";position:absolute;inset:-10px;z-index:-1;background:linear-gradient(rgba(10,34,87,.86),rgba(10,34,87,.7)),url(assets/bg-itr-v1.jpg) center 40%/cover no-repeat;filter:blur(2.5px)}
+/* about: "Everything under one roof" */
+.ab-orbit-sec{position:relative;isolation:isolate;background:none;overflow:hidden}
+.ab-orbit-sec::before{content:"";position:absolute;inset:-10px;z-index:-1;background:linear-gradient(rgba(10,34,87,.84),rgba(10,34,87,.72)),url(assets/bg-itr-v1.jpg) center/cover no-repeat;filter:blur(2.5px)}
+.ab-orbit-sec .vrk-h2{color:var(--brand-orange)}
+.ab-orbit-sec .vrk-eyebrow{color:#fff}
 
 /* ===== About page: animated sections (from VRK-Tax-Solutions-Website package) ===== */
 .vrk-mapbox{position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:var(--surface-alt)}
