@@ -19,7 +19,7 @@ dev-server.mjs          local preview (npm run local -> http://localhost:8888)
 
 ## Deploy (Netlify free)
 Import the GitHub repo in Netlify (Add new site → Import from Git). No build command; publish directory `public`
-(read from `netlify.toml`). Add the custom domain `www.vrktaxsolutions.com` under Domain management.
+(read from `netlify.toml`). Add the custom domain `vrktaxsolutions.in` under Domain management.
 
 ## Run locally
 ```
